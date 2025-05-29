@@ -1,0 +1,618 @@
+/* Estilo base para site minimalista de e-commerce de livros em tons pastéis */
+
+/* Reset e layout principal */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f8f6f3; /* tom pastel suave */
+}
+
+/* Cabeçalho fixo */
+.site-header {
+    background: #333;
+    color: #fff;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    z-index: 1200;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+/* Menu de navegação horizontal para desktop */
+.nav-desktop {
+    display: flex;
+    gap: 32px;
+    margin-left: 32px;
+}
+.nav-desktop a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.nav-desktop a:hover {
+    color: #4caf50;
+}
+
+/* Menu sanduíche */
+.menu-sanduiche {
+    display: block;
+    position: static;      /* Remove o posicionamento absoluto */
+    margin-right: 24px;    /* Espaço entre o ícone e o menu horizontal */
+}
+.menu-toggle {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    position: static;      /* Remove o posicionamento absoluto */
+    left: unset;
+    top: unset;
+    transform: none;
+}
+
+/* Menu lateral minimalista */
+.menu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 220px;
+    height: 100%;
+    background: #fff;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.06);
+    z-index: 1300;
+    display: none;
+    flex-direction: column;
+    padding: 24px 16px;
+    transition: transform 0.4s;
+}
+.menu.active {
+    display: flex;
+}
+.menu-close {
+    font-size: 22px;
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    margin-bottom: 24px;
+    align-self: flex-end;
+}
+.menu-content {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.menu-content li {
+    margin-bottom: 18px;
+}
+.menu-content a {
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+.menu-content a:hover {
+    color: #4caf50;
+}
+
+/* Carrinho no cabeçalho */
+.carrinho {
+    position: absolute;
+    top: 50%; right: 48px;
+    transform: translateY(-50%);
+    z-index: 1100;
+}
+.carrinho-toggle {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Notificação do carrinho */
+.carrinho-notificacao {
+    position: absolute;
+    top: -10px; right: -10px;
+    background: #4caf50;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+}
+.carrinho-notificacao.mostrar {
+    opacity: 0.8;
+    transform: translateY(0);
+}
+
+/* Mini página do carrinho */
+.carrinho-menu {
+    position: fixed;
+    top: 0; right: 0;
+    width: 260px;
+    height: 100%;
+    background: #fff;
+    border-left: 1px solid #e0e0e0;
+    box-shadow: -2px 0 8px rgba(0,0,0,0.06);
+    z-index: 1301;
+    display: none;
+    flex-direction: column;
+    padding: 24px 16px;
+    transition: right 0.3s;
+}
+.carrinho-menu.active {
+    display: flex;
+}
+.carrinho-close {
+    font-size: 18px;
+    background: none;
+    border: none;
+    color: #3498db;
+    cursor: pointer;
+    margin-bottom: 18px;
+    align-self: flex-end;
+}
+.carrinho-content h2 {
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 12px 0;
+}
+.carrinho-itens {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.carrinho-itens li {
+    margin-bottom: 10px;
+    font-size: 15px;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+}
+.carrinho-itens li button {
+    background: #ff4d4d;
+    border: none;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-left: 8px;
+    transition: background 0.2s;
+}
+.carrinho-itens li button:hover {
+    background: #e60000;
+}
+.carrinho-total {
+    margin-top: 18px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #333;
+    text-align: right;
+}
+
+/* Conteúdo principal */
+.conteudo {
+    flex: 1;
+    padding: 90px 24px 32px 24px; /* espaço para o cabeçalho fixo */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Grid de produtos */
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 produtos por linha em telas bem largas */
+    gap: 10px; /* Espaçamento menor entre os produtos */
+    justify-items: center;
+    align-items: start;
+}
+
+@media (max-width: 1600px) {
+    .produtos {
+        grid-template-columns: repeat(6, 1fr); /* 6 produtos por linha */
+    }
+}
+@media (max-width: 1400px) {
+    .produtos {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+@media (max-width: 1200px) {
+    .produtos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width: 900px) {
+    .produtos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 700px) {
+    .produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 500px) {
+    .produtos {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tamanho fixo e proporção para cada produto */
+.produto {
+    width: 220px;              /* Largura fixa */
+    aspect-ratio: 3/4;         /* Proporção fixa (ajuste conforme desejar) */
+    min-width: 220px;
+    max-width: 220px;
+    box-sizing: border-box;
+    border: 1px solid #e0e0e0;
+    padding: 18px 12px;
+    text-align: center;
+    background: #f6f3ee;
+    border-radius: 10px;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.produto img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    background: #f8f6f3;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto 12px auto;
+}
+
+/* Remove media queries que alteram o tamanho dos produtos */
+@media (max-width: 900px), (max-width: 700px), (max-width: 500px) {
+    .produto {
+        width: 220px;
+        min-width: 220px;
+        max-width: 220px;
+        aspect-ratio: 3/4;
+    }
+    .produto img {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* Botão adicionar ao carrinho */
+.adicionar-carrinho {
+    background: #4caf50;
+    border: none;
+    color: #fff;
+    padding: 8px 18px;
+    font-size: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+.adicionar-carrinho:hover {
+    background: #388e3c;
+}
+
+/* Botão flutuante WhatsApp */
+.whatsapp-button {
+    position: fixed;
+    bottom: 32px; right: 24px;
+    background: #25d366;
+    color: #fff;
+    padding: 14px;
+    border-radius: 50%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    transition: transform 0.2s;
+    z-index: 1400;
+}
+.whatsapp-button:hover {
+    transform: scale(1.1);
+}
+
+/* Carrossel de banners */
+.carrossel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    /* Remova a altura fixa! */
+    margin: 24px 0;
+    overflow: hidden;
+    background: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16/6; /* Exemplo: ajuste para o formato real do seu banner */
+}
+.carrossel-imagens {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    align-items: center;
+    justify-content: center;
+}
+.carrossel-item {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;    /* Mantém a proporção original do banner, sem cortar */
+    background: #f4f4f4;
+    flex-shrink: 0;
+    display: none;
+    border-radius: 10px;
+}
+.carrossel-item.ativo {
+    display: block;
+}
+.carrossel-prev,
+.carrossel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 999;
+    transition: background 0.2s;
+}
+.carrossel-prev { left: 12px; }
+.carrossel-next { right: 12px; }
+.carrossel-prev:hover,
+.carrossel-next:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+/* Pop-up de promoção */
+.popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.popup.show {
+    visibility: visible;
+    opacity: 1;
+}
+.popup-content {
+    background: #fff;
+    padding: 24px 18px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.13);
+    max-width: 340px;
+    width: 90%;
+}
+.popup-content h1 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+.popup-content p {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #555;
+}
+.popup-content .discount {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #e74c3c;
+}
+.popup-content .btn {
+    display: inline-block;
+    padding: 8px 18px;
+    background: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.popup-content .btn:hover {
+    background: #2980b9;
+}
+.close-popup {
+    margin-top: 10px;
+    padding: 5px 12px;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+.close-popup:hover {
+    background: #c0392b;
+}
+
+/* Rodapé minimalista */
+.rodape {
+    background: #333;
+    color: #ffe;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 15px;
+    margin-top: auto;
+}
+
+/* Estilo para filtros de gênero */
+.filtros-genero {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+    justify-content: center;
+}
+.filtro-btn {
+    background: #f4f4f4;
+    border: 1px solid #4caf50;
+    color: #333;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background 0.2s, color 0.2s;
+}
+.filtro-btn.ativo,
+.filtro-btn:hover {
+    background: #4caf50;
+    color: #fff;
+}
+
+/* Responsividade para o layout principal */
+@media (max-width: 1300px) {
+    .conteudo {
+        max-width: 98vw;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+/* Responsividade para o grid de produtos */
+@media (max-width: 1600px) {
+    .produtos {
+        grid-template-columns: repeat(6, 1fr); /* 6 produtos por linha */
+    }
+}
+@media (max-width: 1400px) {
+    .produtos {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+@media (max-width: 1200px) {
+    .produtos {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width: 900px) {
+    .produtos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 700px) {
+    .produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 500px) {
+    .produtos {
+        grid-template-columns: 1fr;
+    }
+    .conteudo {
+        padding: 80px 2vw 24px 2vw;
+    }
+}
+
+/* Responsividade para o carrossel */
+@media (max-width: 900px) {
+    .carrossel {
+        height: 200px;
+    }
+}
+@media (max-width: 600px) {
+    .carrossel {
+        height: 120px;
+    }
+}
+
+/* Responsividade para o menu lateral */
+@media (max-width: 700px) {
+    .menu {
+        width: 80vw;
+        min-width: 180px;
+        max-width: 320px;
+        padding: 18px 8px;
+    }
+}
+
+/* Responsividade para botões e textos */
+@media (max-width: 500px) {
+    .adicionar-carrinho {
+        font-size: 13px;
+        padding: 7px 10px;
+    }
+    .produto img {
+        width: 120px;
+        height: 120px;
+    }
+    .popup-content {
+        padding: 10px 2vw;
+        font-size: 0.95rem;
+    }
+    .rodape {
+        font-size: 13px;
+    }
+}
+
+/* Mostra o menu sanduíche e esconde o menu horizontal em telas pequenas */
+@media (max-width: 900px) {
+    .nav-desktop {
+        display: none;
+    }
+    .menu-sanduiche {
+        display: block;
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        margin-right: 0;
+        transform: translateY(-50%);
+    }
+    .menu-toggle {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+/* Esconde os links padrão do menu sanduíche em telas grandes */
+@media (min-width: 901px) {
+    .menu-link-padrao {
+        display: none;
+    }
+}
+/* Em telas pequenas, os links padrão aparecem normalmente */
+@media (max-width: 900px) {
+    .menu-link-padrao {
+        display: list-item;
+    }
+}
+
+/* Exibe o menu lateral apenas em telas pequenas */
+@media (min-width: 901px) {
+    .navbar .menu-content li:not(:has(.menu-genero)) {
+        display: none;
+    }
+}

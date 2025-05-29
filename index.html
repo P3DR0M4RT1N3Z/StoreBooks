@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .cadastro-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .cadastro-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .cadastro-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cadastro-container label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .cadastro-container input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .cadastro-container button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .cadastro-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .google-login {
+            background-color: #db4437;
+            margin-top: 10px;
+        }
+
+        .google-login:hover {
+            background-color: #a33627;
+        }
+    </style>
+</head>
+<body>
+    <div class="cadastro-container">
+        <h1>Cadastro</h1>
+        <form id="cadastroForm">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+            <label for="idade">Idade</label>
+            <input type="number" id="idade" name="idade" placeholder="Digite sua idade" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+        <button class="google-login" id="googleLogin">Cadastrar com Google</button>
+    </div>
+
+    <script>
+        // Redirecionar após cadastro
+        document.getElementById("cadastroForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
+            alert("Cadastro realizado com sucesso!");
+            window.location.href = "principal.html"; // Redireciona para a página principal
+        });
+
+        // Simulação de login com Google
+        document.getElementById("googleLogin").addEventListener("click", function() {
+            alert("Cadastro com Google realizado com sucesso!");
+            window.location.href = "principal.html"; // Redireciona para a página principal
+        });
+    </script>
+</body>
+</html>
